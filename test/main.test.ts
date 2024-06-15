@@ -13,7 +13,7 @@ const expect = chai.expect;
 // import sinon, { SinonStub } from 'sinon';
 
 
-import {ShanonEntropyScoreModelV1, Event} from "../src/q247-models"
+import {ShanonEntropyScoreModelV1, ShanonEntropyScoreModelV2, Event} from "../src/q247-models"
 
 
 
@@ -24,7 +24,18 @@ describe("Models",()=>{
         it("",async ()=>{
             const model = new ShanonEntropyScoreModelV1();            
             const score = await model.score((<any>MOCKS.hookEvents.one) as Event);
-            expect(score.score).gt(0);
+            const score2 = await model.score((<any>MOCKS.hookEvents.two_many_files) as Event);
+            expect(score.score).closeTo(1,0.1);
+            expect(score2.score).closeTo(130,1);
+        })
+    }),
+    describe("ShanonEntropyScoreModelV2",()=>{
+        it("",async ()=>{
+            const model = new ShanonEntropyScoreModelV2();            
+            const score = await model.score((<any>MOCKS.hookEvents.one) as Event);
+            const score2 = await model.score((<any>MOCKS.hookEvents.two_many_files) as Event);
+            expect(score.score).closeTo(1,0.1);
+            expect(score2.score).closeTo(130,1);
         })
     })
 })
