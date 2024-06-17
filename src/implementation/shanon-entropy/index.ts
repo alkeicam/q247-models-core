@@ -127,10 +127,13 @@ export class ShanonEntropyScoreModelV2 implements ScoreModel {
         sizeScore += item.decoded.changeSummary.deletions;
 
         // score = entropy.e*insertDelScore/100
-        const L = 2.7183;
-        const k = 0.0027183;
+        const L = 2;
+        // const k = 0.00027183;
+        const k = 0.00237;
         const sizeCoefficient = L*(1-Math.exp(-k*sizeScore))
-        score = entropy.e*sizeCoefficient;
+        
+        // score = entropy.e*sizeCoefficient+sizeScore/Math.max(sizeCoefficient*10,10)
+        score = entropy.e*sizeCoefficient+sizeScore*sizeCoefficient/(entropy.e*sizeCoefficient)
 
         // we promote push with extra score
         if(item.oper == "push"){
