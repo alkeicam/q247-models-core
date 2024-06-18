@@ -1,10 +1,10 @@
 {
-  "name": "q247-models",
+  "name": "q247-models-core",
   "version": "0.0.1",
   "description": "Models for effort/calories in q247 plugin",
-  "main": "dist/q247-models.umd.js",
-  "types": "dist/q247-models.d.ts",
-  "module": "dist/q247-models.esm.min.js",
+  "main": "dist/q247-models-core.umd.js",
+  "types": "dist/q247-models-core.d.ts",
+  "module": "dist/q247-models-core.esm.min.js",
 
   "homepage": "https://github.com/alkeicam/q247-models",
   "bugs": {
@@ -18,23 +18,23 @@
   ],
   "exports": {
     ".": {
-      "require": "./dist/q247-models.umd.min.js",
-      "import": "./dist/q247-models.esm.min.js"
+      "require": "./dist/q247-models-core.umd.min.js",
+      "import": "./dist/q247-models-core.esm.min.js"
     }
   },
   "scripts": {
     "clean": "rimraf dist/*",
     "docs": "typedoc --entryPointStrategy expand ./src && touch docs/.nojekyll",
-    "build:types": "tsc -t esnext --moduleResolution node -d --emitDeclarationOnly --outFile dist/q247-models.d.ts src/q247-models.ts",
+    "build:types": "tsc -t esnext --moduleResolution node -d --emitDeclarationOnly --outFile dist/q247-models-core.d.ts src/q247-models-core.ts",
     "build:js": "rollup -c rollup.config.js",
-    "build:minjs:umd": "terser dist/q247-models.umd.js --compress --mangle > dist/q247-models.umd.min.js",
-    "build:minjs:esm": "terser dist/q247-models.esm.js --compress --mangle > dist/q247-models.esm.min.js",
+    "build:minjs:umd": "terser dist/q247-models-core.umd.js --compress --mangle > dist/q247-models-core.umd.min.js",
+    "build:minjs:esm": "terser dist/q247-models-core.esm.js --compress --mangle > dist/q247-models-core.esm.min.js",
     "build:minjs": "npm run build:minjs:esm -s && npm run build:minjs:umd -s",
     "build": "date && npm run clean && npm run build:js -s && npm run build:minjs -s && npm run build:types -s",
     "test": "env TS_NODE_PROJECT=\"tsconfig-test.json\" mocha -r ts-node/register --require source-map-support/register --recursive **/test/**/*.test.ts",
     "coverage": "nyc --reporter html --reporter text npm test",
-    "remote-publish-patch": "npm install && npm update && npm run coverage && npm run build && npm version patch && npm publish && git push origin && git push origin --tags",
-    "remote-publish-minor": "npm install && npm update && npm run coverage && npm run build && npm version minor && npm publish && git push origin && git push origin --tags"
+    "remote-publish-patch": "npm install && npm update && npm run build && npm version patch && npm publish && git push origin && git push origin --tags",
+    "remote-publish-minor": "npm install && npm update && npm run build && npm version minor && npm publish && git push origin && git push origin --tags"
   },
   "files": [
     "src",

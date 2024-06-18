@@ -15,7 +15,7 @@ As of today model based on Shanon's entropy model is provided in two versions. Y
 ## Installation
 
 ```bash
-$ npm install js-confuser
+$ npm install q247-models
 ```
 
 ## Usage
@@ -67,3 +67,45 @@ Calculates effort scoring for provided `gitEvent`. Returns a [`Promise`](https:/
 | Parameter | Type | Description |
 | --- | --- | --- |
 | `gitEvent` | `object` | Git event object from q247 plugin |
+
+## `Score`
+
+Result of score calculation.
+
+```js
+export interface ScoreModelCard {
+    name: string;
+    version: string;
+}
+export interface Score {
+    id: string; // score unique id
+    model: ScoreModelCard;
+    event: Event; // source event that was scored
+}
+export interface ScalarScore extends Score{    
+    score: number
+}
+```
+
+| Name | Description | Example |
+| --- | --- | --- |
+| `"id"` | Unique score id | a8sjk800js71ja |
+| `"name"` | Name of the model used to calculate this score | ShanonEntropyScoreModelV2 |
+| `"version"` | Version number of the model used to calculate score | w$Tsu4G |
+| `"event"` | Source git event for which score was calculated | See Usage section for event example |
+| `"score"` | Estimated effort required to produce source git event | 1.23 |
+
+## Writing custom models
+Q247 models are fully extendable. In order to create custom model one should provide an implementation of a `ScoreModel` class/interface
+```js
+export class ShanonEntropyScoreModelV1 implements ScoreModel {
+    
+    name = "ShanonEntropyScoreModel";
+    version = "1.0";
+
+    score(event: Event): Promise<ScalarScore> {
+      /* here goes your custom model implementation */
+    }
+}
+
+```
