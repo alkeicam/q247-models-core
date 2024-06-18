@@ -15,13 +15,13 @@ As of today model based on Shanon's entropy model is provided in two versions. Y
 ## Installation
 
 ```bash
-$ npm install q247-models
+$ npm install q247-models-core
 ```
 
 ## Usage
 
 ```js
-const {ShanonEntropyScoreModelV2} = require("q247-models")
+const {ShanonEntropyScoreModelV2} = require("q247-my-custom-models")
 
 const q247Event = {
   gitlog: "commit 5fc617ef5ede5d7ff6ffef0ba3205afe3e2a337e\nAuthor: xxxxx xxxxx <xxxxx.xxxxx@somecompany.pl>\nDate:   Sat Jun 8 18:44:46 2024 +0200\n\n    PWR-01 cleaning\n\n index.js | 5 +----\n 1 file changed, 1 insertion(+), 4 deletions(-)\n",
@@ -98,6 +98,8 @@ export interface ScalarScore extends Score{
 ## Writing custom models
 Q247 models are fully extendable. In order to create custom model one should provide an implementation of a `ScoreModel` class/interface
 ```js
+import { ScalarScore, ScoreModel, Event } from "q247-models-core";
+
 export class ShanonEntropyScoreModelV1 implements ScoreModel {
     
     name = "ShanonEntropyScoreModel";

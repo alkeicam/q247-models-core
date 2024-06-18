@@ -5,9 +5,9 @@
   "main": "dist/q247-models-core.umd.js",
   "types": "dist/q247-models-core.d.ts",
   "module": "dist/q247-models-core.esm.min.js",
-  "homepage": "https://github.com/alkeicam/q247-models",
+  "homepage": "https://github.com/alkeicam/q247-models-core",
   "bugs": {
-    "url": "https://github.com/alkeicam/q247-models/issues"
+    "url": "https://github.com/alkeicam/q247-models-core/issues"
   },
   "keywords": [
     "q247",
