@@ -4,6 +4,7 @@
 Model and reference implementation of developer effort models for Q247 plugin
 
 ## Key features
+
 - Pluggable model architecture
 - Easy to provide custom made models
 - 2 sample models to start with are provided
