@@ -1,5 +1,6 @@
 
 import {Event} from "./event";
+import {Content}  from "./content";
 
 export interface Score {
     id: string; // score unique id
@@ -16,6 +17,14 @@ export interface ScoreModelCard {
     version: string;
 }
 
-export interface ScoreModel extends ScoreModelCard{           
+export interface ModelParams {
+    [key: string]: any; // Keys are strings
+}
+
+export interface ScoreModel extends ScoreModelCard{        
     score: (event:Event) => Promise<Score>;
+}
+
+export interface ContentScoreModel extends ScoreModelCard{        
+    score: (event:Content.ContentEvent) => Promise<Score>;
 }
