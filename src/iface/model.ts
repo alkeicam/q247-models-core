@@ -5,7 +5,7 @@ import {Content}  from "./content";
 export interface Score {
     id: string; // score unique id
     model: ScoreModelCard;
-    event: Event; // source event that was scored
+    event: Event|Content.ContentEvent; // source event that was scored
 }
 
 export interface ScalarScore extends Score{    
