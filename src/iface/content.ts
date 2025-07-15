@@ -1,6 +1,6 @@
 
 export namespace Content {
-    export enum ContentEventOpenEnum {
+    export enum ContentEventOperEnum {
         JIRA_TICKET = "jira-ticket",
         CONFLU_PAGE = "conflu-page"
     }
@@ -18,11 +18,11 @@ export namespace Content {
     } 
 
     export interface ContentJiraTicketEvent extends ContentEvent {
-        oper: ContentEventOpenEnum.JIRA_TICKET;        
+        oper: ContentEventOperEnum.JIRA_TICKET;        
     }
 
     export interface ContentConfluencPageEvent extends ContentEvent {
-        oper: ContentEventOpenEnum.CONFLU_PAGE;        
+        oper: ContentEventOperEnum.CONFLU_PAGE;        
     }
 
     /**
