@@ -1,8 +1,6 @@
 export interface Author {
-    author: {
-        name: string;
-        email: string;
-    }
+    name: string;
+    email: string;
 }
 export interface ChangeSummary {
     raw: string; // usually something like " 2 files changed, 136 insertions(+), 1 deletion(-)",
