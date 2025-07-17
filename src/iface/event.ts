@@ -38,6 +38,7 @@ export interface EventBase{
     decoded: DecodedBase;
     ct: number;
     tenantId: string;    
+    diff: any;
 }
 
 /**
