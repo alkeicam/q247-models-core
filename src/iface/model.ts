@@ -12,7 +12,7 @@ export interface ScalarScore extends Score{
     score: number
 }
 
-export interface ScalarScoreWithChangeSummary extends Score{    
+export interface ScalarScoreWithChangeSummary extends ScalarScore{    
     files: number,
     inserts: number,
     deletions: number
