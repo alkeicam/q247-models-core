@@ -36,12 +36,7 @@ export namespace Content {
      * This is a more generic event that can be used for various content-related operations.
      */
     export interface ContentEvent extends EventBase{        
-        decoded: DecodedContent;
-        source: {            
-            url?: string,
-            ticketId?: string,
-            projectId?: string
-        }                        
+        decoded: DecodedContent;                                
         diff: ContentDiff[]        
     }
 }
