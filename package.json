@@ -1,6 +1,6 @@
 {
   "name": "q247-models-core",
-  "version": "0.0.14",
+  "version": "0.0.15",
   "description": "Models for effort/calories in q247 plugin",
   "main": "dist/q247-models-core.umd.js",
   "types": "dist/q247-models-core.d.ts",
