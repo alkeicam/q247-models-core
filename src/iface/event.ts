@@ -1,24 +1,54 @@
-export interface Decoded{
+export interface Author {
+    author: {
+        name: string;
+        email: string;
+    }
+}
+export interface ChangeSummary {
+    raw: string; // usually something like " 2 files changed, 136 insertions(+), 1 deletion(-)",
+    files: number,
+    inserts: number,
+    deletions: number
+}
+
+export interface DecodedBase{
+    author:Author // author data
     ticket:string; // id of the ticket
     ticketPrefix:string; //ticket prefix, usually this should map to external project id/code
-    commit:string; // - commit line with commit hash
-    author:any // author data
-    date:string // date line
-    message:string // change message
-    changes:string // changes lines
-    changeSummary:any // summary of changes
+    changeSummary:ChangeSummary // summary of changes
 }
-export interface Event{
-    version: string;
-    oper: "commit"|"push";
-    remote: string;
-    account: string;
-    user: string;
-    project: string;
+
+export interface Decoded extends DecodedBase{
+    commit:string; // - commit line with commit hash
+    commitId: string; // just commit id withot "commit" prefix    
+    date:string // date line for git log command, usually: Date:   2025-05-28 21:45:31
+    message:string // change message
+    changes:string|string[] // changes lines    
+}
+
+/**
+ * Base increment event structure. There might be multiple increments (like code increment 
+ * aka commit, or some content increments like working on JIRA issue)
+ */
+export interface EventBase{
     id: string;
-    decoded: Decoded;
+    version: string;
+    oper: string;    
+    account: string;
+    user: string;  
+    project: string;      
+    decoded: DecodedBase;
     ct: number;
-    tenantId: string;
+    tenantId: string;    
+}
+
+/**
+ * Represents a "commit" event
+ */
+export interface Event extends EventBase{ 
+    remote: string;   
+    oper: "commit"|"push";
+    decoded: Decoded;        
     gitlog: string;
-    diff: string
+    diff: string;
 }

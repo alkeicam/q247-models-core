@@ -1,3 +1,4 @@
+import { DecodedBase, EventBase } from "./event";
 
 export namespace Content {
     export enum ContentEventOperEnum {
@@ -25,22 +26,22 @@ export namespace Content {
         oper: ContentEventOperEnum.CONFLU_PAGE;        
     }
 
+    export interface DecodedContent extends DecodedBase {                
+        url?: string, // content url        
+        projectId?: string // id of the project in which content was modified
+    }
+
     /**
      * Represents an event related to content, such as creating new content or updating existing content.
      * This is a more generic event that can be used for various content-related operations.
      */
-    export interface ContentEvent {
-        id: string;        
-        version: string;
-        oper: string;        
-        user: string;
+    export interface ContentEvent extends EventBase{        
+        decoded: DecodedContent;
         source: {            
             url?: string,
             ticketId?: string,
             projectId?: string
-        }
-        ct: number;
-        tenantId: string;
+        }                        
         diff: ContentDiff[]        
     }
 }
