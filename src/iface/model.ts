@@ -12,6 +12,12 @@ export interface ScalarScore extends Score{
     score: number
 }
 
+export interface ScalarScoreWithChangeSummary extends Score{    
+    files: number,
+    inserts: number,
+    deletions: number
+}
+
 export interface ScoreModelCard {
     name: string;
     version: string;
@@ -26,5 +32,5 @@ export interface ScoreModel extends ScoreModelCard{
 }
 
 export interface ContentScoreModel extends ScoreModelCard{        
-    score: (event:Content.ContentEvent) => Promise<Score>;
+    score: (event:Content.ContentEvent) => Promise<ScalarScoreWithChangeSummary>;
 }
