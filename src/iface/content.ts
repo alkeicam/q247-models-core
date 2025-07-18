@@ -29,6 +29,7 @@ export namespace Content {
     export interface DecodedContent extends DecodedBase {                
         url?: string, // content url        
         projectId?: string // id of the project in which content was modified
+        reason?: "issue"|"comment"|"page" // more precise source of calories
     }
 
     /**
