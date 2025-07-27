@@ -35,6 +35,23 @@ export interface ContentScoreModel extends ScoreModelCard{
     score: (event:Content.ContentEvent) => Promise<ScalarScoreWithChangeSummary>;
 }
 
+export namespace Diff {
+    export interface GitDiffLineChange {
+        type: 'added' | 'removed';
+        line: string;
+      }
+      
+      export interface GitDiffFile {
+        original: string;   // Content before the change
+        resulting: string;  // Content after the change
+        changed: GitDiffLineChange[]; // List of line-level changes
+      }
+      
+      export interface GitDiffResult {
+        [filePath: string]: GitDiffFile;
+      }
+}
+
 export interface HalsteadScore extends ScalarScore {
     scaledEffort: number, 
     vocabulary: number, 
