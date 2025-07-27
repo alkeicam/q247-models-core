@@ -34,3 +34,14 @@ export interface ScoreModel extends ScoreModelCard{
 export interface ContentScoreModel extends ScoreModelCard{        
     score: (event:Content.ContentEvent) => Promise<ScalarScoreWithChangeSummary>;
 }
+
+export interface HalsteadScore extends ScalarScore {
+    scaledEffort: number, 
+    vocabulary: number, 
+    length: number, 
+    volume: number, 
+    difficulty: number, 
+    effort: number, 
+    timeToProgram: number, 
+    deliveredBugs: number
+}
