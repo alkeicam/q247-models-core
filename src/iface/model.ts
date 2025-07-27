@@ -56,7 +56,7 @@ export namespace Halstead {
         [filePath: string]: Metrics
     }
     export interface IncrementMetrics {
-        files: FileMetrics[],
+        files: FileMetrics,
         total: Metrics
     }    
     export interface Metrics {
