@@ -4,4 +4,4 @@ export type {Event, Decoded, Author, ChangeSummary, DecodedBase, EventBase} from
 export {Diff, HalsteadScore} from "./iface/model"
 export type {Content} from "./iface/content"
 
-export {parseGitDiff} from "./logic/commons"
+export {parseGitDiff, fmwFactor} from "./logic/commons"

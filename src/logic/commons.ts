@@ -67,3 +67,23 @@ export const parseGitDiff = (diffText:string):Diff.GitDiffResult=>{
   
     return files;
 }
+
+ /**
+* This is a FMW factor function that applies following modification to the score:
+* - Is linear when score < upper
+* - Smoothly flattens and asymptotically approaches border for score ≥ upper
+* 
+* f(x)=border−(border−upper)⋅e^(−(x−upper/L) 
+* @param score original score <0, inf)
+* @param upper up to upper we do not modify the score, after upper we asymptotically reach border
+* @param border asymptotic border for scores that are greater than upper
+* @param L the bigger the L the slower approach towards border
+* @returns modified score <0, border)
+*/
+export const fmwFactor = (score:number, upper: number = 377, border: number=610, L=100)=>{
+   if (score < upper) {
+       return score;
+   }
+   const factor = border - (border - upper) / (1 + (score - upper) / L);
+   return factor;
+}
