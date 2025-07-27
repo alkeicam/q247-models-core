@@ -51,14 +51,26 @@ export namespace Diff {
         [filePath: string]: GitDiffFile;
       }
 }
+export namespace Halstead {
+    export interface FileMetrics {
+        [filePath: string]: Metrics
+    }
+    export interface IncrementMetrics {
+        files: FileMetrics[],
+        total: Metrics
+    }    
+    export interface Metrics {
+        scaledEffort: number, 
+        vocabulary: number, 
+        length: number, 
+        volume: number, 
+        difficulty: number, 
+        effort: number, 
+        timeToProgram: number, 
+        deliveredBugs: number
+    }
 
-export interface HalsteadScore extends ScalarScore {
-    scaledEffort: number, 
-    vocabulary: number, 
-    length: number, 
-    volume: number, 
-    difficulty: number, 
-    effort: number, 
-    timeToProgram: number, 
-    deliveredBugs: number
+    export interface Score extends ScalarScore{
+        increment: IncrementMetrics
+    }
 }
